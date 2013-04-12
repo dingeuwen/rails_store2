@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>ID:</b>
+  <%= @product.id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @product.name %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @product.price %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @product.description %>
+</p>
+
+<p>
+  <b>Product picture:</b>
+  <%= @product.product_picture %>
+</p>
+
+<p>
+  <b>In cart:</b>
+  <%= @product.in_cart %>
+</p>
+
+<p>
+  <b>Existing reviews:</b>
+  <% @review.each do |a_review| %>
+  <p>Review ID: <%= a_review.id %></p>
+  <p>    <%= a_review.body %></p>
+  <% end %>
+</p>
+
+
+<form action='/reviews/new' method='get'>
+
+<input type='hidden' value="<%= @product.id %>" name='product_id'/>
+
+<button type="submit">Write your review for <%= @product.name %></button> 
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
