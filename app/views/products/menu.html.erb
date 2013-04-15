@@ -1,1 +1,23 @@
-<h1>Welcome to the store!</h1>
+<head>
+  <%= stylesheet_link_tag 'products' %>
+</head>
+
+
+<body>
+
+  <h1 class="menu_title">Welcome to Bob's Wishlist</h1>
+
+  <form class="menu_search_field" action='/product_search' method='get'>
+    <p class="menu_words"><label for='product_search_name'>Lets go find some shit!</label></p>
+    <p>
+    <input type='text' name='product_search_name'/>
+    <button>Search!</button>
+</p>
+  </form>
+
+<div class="menu_links">
+  <%= link_to 'See all products', products_path %>
+  <%= link_to 'See all reviews', reviews_path %>
+</div>
+
+</body>

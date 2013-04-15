@@ -1,12 +1,39 @@
 RailsStore2::Application.routes.draw do
+ 
+
   resources :reviews
-
-
   resources :products
 
+  match '/product_search' => 'products#product_search', :as => :product_search 
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  # get 'products/product_search', :to => 'products#product_search', :as => product_search
+
+  # get '/reviews(.:format)', :to => 'reviews#index', :as => reviews 
+  # post '/reviews(.:format)', :to => 'reviews#create'
+  # get '/reviews/new(.:format)', :to => 'reviews#new', :as => new_review 
+  # get '/reviews/:id/edit(.:format)', :to => 'reviews#edit', :as => edit_review
+  # get '/reviews/:id/(.:format)', :to => 'reviews#show', :as => review 
+  # put '/reviews/:id(.format)', :to => 'reviews#update'
+  # delete '/reviews/:id(.:format)', :to => 'reviews#destroy'
+
+  # get '/products(.:format)', :to => 'products#index', :as => products
+  # post '/products(.:format)', :to => 'products#create'
+  # get '/products/new(.:format)', :to => 'products#new', :as => new_product
+  # get '/products/:id/edit(.:format)', :to => 'products#edit', :as => edit_product
+  # get '/products/:id/(.:format)', :to => 'products#show', :as => product
+  # put '/products/:id(.format)', :to => 'products#update'
+  # delete '/products/:id(.:format)', :to => 'products#destroy'
+
+  root :to => 'products#menu'
+
+# get '/supernewhome', :to => home#index, :as => matt 
+# (this makes a new route to /supernewhome, and its called matt. 
+# to create a link to it using helpers, write <%= link_to "Home!", matt_path %>
+
+#   # The priority is based upon order of creation:
+#   # first created -> highest priority.
+
+
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -54,7 +81,7 @@ RailsStore2::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-root :to => 'products#menu'
+
 
   # See how all your routes lay out with "rake routes"
 

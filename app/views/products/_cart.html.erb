@@ -1,0 +1,28 @@
+
+<head>
+  <%= stylesheet_link_tag 'products' %>
+</head>
+
+<h3> Items in wishlist: </h3>
+
+<% total = 0 %>
+<% @products.each do |f| %>
+
+  <% if f.in_cart == true %>
+    
+    <div class="cart_item_name"> - <%= f.name.capitalize %></div> 
+    <div class="cart_item_price"> Price: <%= number_to_currency(f.price) %> </div>
+    
+    <div class="cart_remove_button">
+      <%= form_tag(product_path(f), :method => "put") do %>
+        <input type='hidden' value="false" name='product[in_cart]'/>
+        <button type="submit">Remove from wishlist</button> 
+      <% end %>
+    </div>
+    <% total = total + f.price %>
+
+  <% end %>
+<% end %>
+
+<p class="cart_total">Total: <%= number_to_currency(total) %></p>
+

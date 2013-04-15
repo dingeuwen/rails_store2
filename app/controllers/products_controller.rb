@@ -2,6 +2,34 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   
+
+
+
+# #****************INTEGRATING THE TWITTER API**********************
+# get '/products/search' do
+#   @q = params[:q]
+#   file = open("http://search.twitter.com/search.json?q=#{URI.escape(@q)}")
+#   @results = JSON.load(file.read)
+#   erb :search_results
+# end
+# #*****************************************************************
+# # WTF why did just moving this code block from the bottom to up here make it work??
+
+
+# #***************INTEGRATING THE GOOGLE PRODUCTS API***************
+# get '/products/search_google' do 
+#   @q = params[:q]
+#   file = open("https://www.googleapis.com/shopping/search/v1/public/products?key=AIzaSyBtm1EPiT8NUSsgTJhBb5dxlhGAi8FvLu4&country=US&q=#{URI.escape(@q)}", :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE)
+#   @results = JSON.load(file.read)
+#   erb :search_google
+# end
+# #*****************************************************************
+
+  def product_search
+    @q = params[:product_search_name]
+    @results = Googleproductssearch.new(@q).search
+  end
+
   def menu
   end
 
@@ -19,6 +47,9 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @review = Review.where(:product_id => params[:id])
+    @products = Product.all
+
+    @results = Twitterproductsearch.new(@product.name).search
 
     respond_to do |format|
       format.html # show.html.erb
@@ -65,7 +96,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to @product, notice: 'Cart successfully updated!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -1,35 +1,60 @@
-<h1>Listing products</h1>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Description</th>
-    <th>Product picture</th>
-    <th>In cart</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<head>
+  <%= stylesheet_link_tag 'products' %>
+</head>
+
+<h1 class="index_title">Products in database:</h1>
+
+
+<div class="index_all_products">
 
 <% @products.each do |product| %>
-  <tr>
-    <td><%= product.id %></td>
-    <td><%= product.name %></td>
-    <td><%= product.price %></td>
-    <td><%= product.description %></td>
-    <td><%= product.product_picture %></td>
-    <td><%= product.in_cart %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+<div id="index_one_whole_product">
+  
+  <p class="index_product_id">  
+    <%= product.id %>
+
+  <div class="index_product_image">
+    <img src="<%= product.product_picture %>" width="240" height=auto></div></p>
+
+  <p class="index_product_name">
+    <%= product.name.capitalize %></p>
+
+  <p class="index_price">
+    <%= number_to_currency(product.price) %></p>
+
+  <p class="index_product_cart_button">
+    <% if product.in_cart %>
+      <%= form_tag(product_path(product), :method => "put") do %>
+        <input type='hidden' value="false" name='product[in_cart]'/>
+        <button type="submit">Remove from wishlist</button> 
+      <% end %>
+    <% else %>
+      <%= form_tag(product_path(product), :method => "put") do %>
+        <input type='hidden' value="true" name='product[in_cart]'/>
+        <button type="submit">Add to wishlist</button> 
+      <% end %>
+    <% end %></p>
+
+  <p class="index_product_links">
+    <%= link_to 'Detail', product %>
+    <%= link_to 'Edit', edit_product_path(product) %>
+    <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+</div>
 <% end %>
-</table>
+</div>
 
 <br />
 
-<%= link_to 'New Product', new_product_path %>
+<div class="index_new_product_search">
+  <form action='/product_search' method='get'>
+    <label for='product_search_name'>Search for new product</label>
+    <input type='text' name='product_search_name'/>
 
+    <button>Search</button>
+  </form></div>
+
+<div class="index_cart">
+  <%= render 'cart' %></div>
 

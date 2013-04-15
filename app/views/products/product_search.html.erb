@@ -1,0 +1,25 @@
+
+<h1> Search results for <%= @q %> on Google Products </h1>
+
+
+<%= @results["items"].each do |result| %>
+
+<div>
+  <img src=<%= result["product"]["images"][0]["link"] %> width="240" height=auto>
+  <p> <%= result["product"]["title"] %> </p>
+  <p> <%= number_to_currency(result["product"]["inventories"][0]["price"]) %> </p>
+  <p> <%= result["product"]["description"] %> </p>
+  <p> <a href=<%= result["product"]["link"] %>>More product details</a> </p>
+
+   <%= form_tag(products_path, :method => "post") do %>
+     <input type='hidden' value="<%= result["product"]["title"] %>" name='product[name]'/>
+     <input type='hidden' value="<%= result["product"]["inventories"][0]["price"] %>" name='product[price]'/>
+     <input type='hidden' value="<%= result["product"]["description"] %>" name='product[description]'/>
+     <input type='hidden' value="<%= result["product"]["images"][0]["link"] %>" name='product[product_picture]'/>
+     <input type='hidden' value="true" name='product[in_cart]'/>
+     <button type="submit">Add to Eu-wen's wishlist</button> 
+   <% end %>
+
+</div>
+
+<% end %>

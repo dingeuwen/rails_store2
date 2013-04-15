@@ -15,13 +15,21 @@
     <%= f.label :body %><br />
     <%= f.text_area :body %>
   </div>
-  <div class="field">
-    <%= f.label :rating %><br />
-    <%= f.text_field :rating %>
+  <div>Rating:
+    <%= f.radio_button(:rating, 1) %>
+    <%= f.label(:rating_one, "One (poor)") %>
+    <%= f.radio_button(:rating, 2) %>
+    <%= f.label(:rating_two, "Two") %>
+    <%= f.radio_button(:rating, 3) %>
+    <%= f.label(:rating_three, "Three") %>
+    <%= f.radio_button(:rating, 4) %>
+    <%= f.label(:rating_four, "Four") %>
+    <%= f.radio_button(:rating, 5) %>
+    <%= f.label(:rating_five, "Five (excellent)") %>
   </div>
   <div class="field">
     <% if @product %>
-    <input type="hidden" name='review[product_id' value='<%= @product.id %>'>
+    <input type="hidden" name='review[product_id]' value='<%= @product.id %>'>
     <% else %>
     <select name="review[product_id]">
       <% Product.all.each do |doit| %>

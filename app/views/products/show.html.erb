@@ -1,4 +1,14 @@
+<head>
+  <%= stylesheet_link_tag 'products' %>
+</head>
+
+
+<div class="show_all_text">
 <p id="notice"><%= notice %></p>
+
+<p class="show_image">
+  <img src="<%= @product.product_picture %>" width="240" height=auto>
+</p>
 
 <p>
   <b>ID:</b>
@@ -12,22 +22,12 @@
 
 <p>
   <b>Price:</b>
-  <%= @product.price %>
+  <%= number_to_currency(@product.price) %>
 </p>
 
 <p>
   <b>Description:</b>
   <%= @product.description %>
-</p>
-
-<p>
-  <b>Product picture:</b>
-  <%= @product.product_picture %>
-</p>
-
-<p>
-  <b>In cart:</b>
-  <%= @product.in_cart %>
 </p>
 
 <p>
@@ -39,12 +39,45 @@
 </p>
 
 
-<form action='/reviews/new' method='get'>
+  <form action='/reviews/new' method='get'>
+  <input type='hidden' value="<%= @product.id %>" name='product_id'/>
+  <button type="submit">Write a review for <%= @product.name %></button> 
+  </form>
 
-<input type='hidden' value="<%= @product.id %>" name='product_id'/>
-
-<button type="submit">Write your review for <%= @product.name %></button> 
+<% if @product.in_cart %>
+  <%= form_tag(product_path(@product), :method => "put") do %>
+  <input type='hidden' value="false" name='product[in_cart]'/>
+  <button type="submit">Remove from wishlist</button> 
+  <% end %>
+<% else %>
+  <%= form_tag(product_path(@product), :method => "put") do %>
+  <input type='hidden' value="true" name='product[in_cart]'/>
+  <button type="submit">Add to wishlist</button> 
+  <% end %>
+<% end %>
 
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'See all products', products_path %>
+
+
+<h3> What people are tweeting about <%= @product.name %></h3>
+
+<% @results["results"].each do |result| %>
+  <div>
+    <img src="<%= result["profile_image_url"] %>">
+    <p>Username: <%= result["from_user"] %>, <%= result["from_user_name"] %></p>
+    <p><%= result["created_at"] %></p>
+    <p><%= result["text"] %></p>
+  </div>
+<% end %>
+</div>
+
+<div class="show_cart">
+  <%= render 'cart' %></div>
+
+
+
+
+
+

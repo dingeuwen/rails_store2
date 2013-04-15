@@ -1,3 +1,126 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.show_all_text {
+	width: 700px;
+	margin-left: 60px;
+	margin-top: 30px;
+}
+
+.show_image {
+	width: 240px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.show_cart{
+	border: 2px solid black;
+	display: inline-block;
+	width: 350px;
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	background-color: #CCFFCC;
+}
+
+
+.cart_item_name {
+	width: 180px;
+	display: inline-block;
+	margin-left: 10px
+}
+
+.cart_item_price {
+	width: 120px;
+	display: inline-block;
+	margin-left: 10px;
+
+}
+
+.cart_remove_button {
+	margin-left: 200px;
+	margin-top: 10px;
+	margin-bottom: 13px;
+}
+
+.cart_total {
+	margin-left: 205px;
+	margin-top: 40px;
+	font-weight: bold;
+
+}
+
+
+.index_title {
+	padding: 20px 20px 20px 20px;
+	display: inline-block;
+	margin-left: 50px;
+}
+
+#index_one_whole_product {
+	
+	display: inline-block;
+	padding: 10px, 25px, 10px, 25px;
+	width: 240px;
+}
+
+.index_product_image {
+	width: 240px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.index_all_products {
+	float: left;
+	width: 900px;
+	margin-left: 40px;
+}
+
+.index_cart {
+	border: 2px solid black;
+	display: inline-block;
+	width: 350px;
+	position: absolute;
+	right: 30px;
+	top: 125px;
+	background-color: #CCFFCC;
+}
+
+.index_new_product_search {
+	display: inline-block;
+	width: 250px;
+	position: absolute;
+	right: 10px;
+	top: 50px;
+}
+
+
+body {
+	background-color: #E0E0E0;
+}
+
+.menu_title {
+	color: #CC9966;
+	padding: 40px 10px 12px 10px;
+	margin-top: 120px;
+	text-align: center;
+	font-size: 2.5em;
+}
+
+.menu_search_field {
+	text-align: center;
+	padding: 40px 10px 40px 10px;
+	
+}
+
+.menu_words {
+	font-size: 2.5em;
+	font-weigt: strong;
+}
+
+.menu_links {
+	text-align: center;
+	font-size: 1.8em;
+}
